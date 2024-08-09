@@ -23,3 +23,26 @@ if __name__ == '__main__':
         open(path_query + 'dwh_design.sql', 'r').read(), strip_comments=True
     ).strip()
     
+    try:
+        #get data
+        print('[INFO] service etl is running...')
+        df = pd.read_sql(query, engine)
+        print(df)
+        # create schema dwh
+        cursor_dwh.execute(dwh_design)
+        conn_dwh.commit()
+        
+        # ingest data to dwh
+        df.to_sql(
+            'dim_orders_ricky',
+            engine_dwh,
+            schema='public',
+            if_exists='append', # replace or append
+            index=False
+        )
+        
+        print('[INFO] service etl is success...')
+        
+    except Exception as e:
+        print("[INFO] service etl is failed")
+        print(str(e))
