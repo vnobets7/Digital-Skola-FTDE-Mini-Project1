@@ -57,3 +57,6 @@ Bagian dari tugas Fast-Track mini project, dibuat bersama tim Insight Architect.
    ```
    python main.py
    ```
+
+## Ouput on Data Warehouse 
+![Data Warehouse](https://github.com/vnobets7/Digital-Skola-FTDE-Mini-Project1/blob/main/output-on-dwh.PNG)
