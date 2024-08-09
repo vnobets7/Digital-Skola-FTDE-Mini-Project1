@@ -13,3 +13,13 @@ if __name__ == '__main__':
     conf_dwh = connection.config('dwh')
     conn_dwh, engine_dwh = connection.get_conn(conf_dwh, 'DWH')
     cursor_dwh = conn.cursor()
+  
+    # get query string
+    path_query = os.getcwd() + '/query/'
+    query = sqlparse.format(
+        open(path_query + 'query.sql', 'r').read(), strip_comments=True
+    ).strip()
+    dwh_design = sqlparse.format(
+        open(path_query + 'dwh_design.sql', 'r').read(), strip_comments=True
+    ).strip()
+    
